@@ -37,7 +37,7 @@ A1-3/
 ├── docs/
 │   └── service-plan.md  # 서비스 기획서
 ├── requirements.txt      # Python 의존성
-└── vercel.json           # Vercel 함수 설정 (maxDuration 등)
+└── vercel.json           # Vercel 빌드 설정 (정적 파일과 Python 함수 분리)
 ```
 
 ## 로컬에서 실행하는 방법
