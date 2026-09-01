@@ -16,9 +16,13 @@ from anthropic import Anthropic
 
 # API 키는 코드에 직접 적지 않고 Vercel 환경 변수(ANTHROPIC_API_KEY)에서 읽어온다.
 # 이렇게 하면 키가 GitHub 저장소나 화면에 노출되지 않는다.
-client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+# base_url은 교육장에서 제공하는 Codyssey Anthropic 호환 게이트웨이 주소이다.
+client = Anthropic(
+    api_key=os.environ.get("ANTHROPIC_API_KEY"),
+    base_url="https://copa.codyssey.kr",
+)
 
-MODEL_NAME = "claude-haiku-4-5-20251001"
+MODEL_NAME = "claude-haiku-4"
 
 
 class handler(BaseHTTPRequestHandler):

@@ -52,10 +52,10 @@ AI 추천 기능(`/api/recommend`)은 Vercel 서버리스 함수이므로 아래
 2. **Vercel에 직접 배포 후 확인** (아래 배포 방법 참고)
 
 ## 배포 방법 (Vercel)
-1. Anthropic API 키를 준비한다 (교육장 제공 키 또는 [Anthropic Console](https://console.anthropic.com)에서 발급).
+1. 교육장(Codyssey)에서 제공하는 Anthropic 호환 API 키(virtual key)를 발급받는다. (호출 주소는 `https://copa.codyssey.kr`로 코드에 고정되어 있음)
 2. [vercel.com](https://vercel.com)에 GitHub 계정으로 로그인 후, 이 저장소(`codyssey-seungmin/A1-3`)를 Import한다.
 3. 프로젝트 설정의 **Environment Variables**에 아래 값을 추가한다.
-   - `ANTHROPIC_API_KEY` = 발급받은 API 키
+   - `ANTHROPIC_API_KEY` = 발급받은 virtual key
 4. Deploy를 실행하면 배포가 완료되고 `*.vercel.app` 형태의 URL이 발급된다.
 5. 이후 GitHub `main` 브랜치에 push할 때마다 Vercel이 자동으로 재배포한다.
 
