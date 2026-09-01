@@ -20,7 +20,7 @@
   - 기분 (select: 기쁨/우울/편안/설렘/무기력)
   - 좋아하는 장르/소재 (자유 텍스트)
   - 오늘 읽을 수 있는 시간 (select: 10분 이내/30분 정도/1시간 이상)
-- **처리**: 프론트엔드가 `fetch('/api/recommend')`로 입력값을 백엔드에 전달 → 백엔드(Vercel Serverless Function, Python)가 Google Gemini API를 호출해 조건에 맞는 책 3권과 추천 이유를 생성 → JSON으로 프론트에 반환.
+- **처리**: 프론트엔드가 `fetch('/api/recommend')`로 입력값을 백엔드에 전달 → 백엔드(Vercel Serverless Function, Python)가 Anthropic Claude API를 호출해 조건에 맞는 책 3권과 추천 이유를 생성 → JSON으로 프론트에 반환.
 - **출력**: 책 제목, 저자, 추천 이유(2문장 이내)로 구성된 카드 3개.
 - **제공 가치**: 선택 피로를 줄이고, 근거(이유)가 있는 추천으로 신뢰도를 높인다.
 
@@ -33,5 +33,5 @@
 
 ## 5. 기술 스택
 - 프론트엔드: 바닐라 HTML / CSS / JavaScript (프레임워크 미사용)
-- 백엔드: Vercel Serverless Functions (Python), Google Gemini API
+- 백엔드: Vercel Serverless Functions (Python), Anthropic Claude API
 - 배포: GitHub + Vercel (GitHub 저장소를 Vercel과 연동해 push 시 자동 배포)
