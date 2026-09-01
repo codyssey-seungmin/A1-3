@@ -1,7 +1,7 @@
 # ========================================
 # Vercel Serverless Function (Python)
 # 프론트엔드(js/recommend.js)가 POST /api/recommend 로 보낸
-# { mood, genre, time } 을 받아 Claude API에게 책 추천을 요청하고,
+# { mood, genre, time } 을 받아 Gemini API에게 책 추천을 요청하고,
 # { books: [{ title, author, reason }, ...] } 형태로 응답한다.
 #
 # Vercel의 Python 런타임은 이 파일 안에 BaseHTTPRequestHandler를
@@ -12,13 +12,13 @@ import json
 import os
 from http.server import BaseHTTPRequestHandler
 
-from anthropic import Anthropic
+from google import genai
 
-# API 키는 코드에 직접 적지 않고 Vercel 환경 변수(ANTHROPIC_API_KEY)에서 읽어온다.
+# API 키는 코드에 직접 적지 않고 Vercel 환경 변수(GEMINI_API_KEY)에서 읽어온다.
 # 이렇게 하면 키가 GitHub 저장소나 화면에 노출되지 않는다.
-client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
-MODEL_NAME = "claude-haiku-4-5-20251001"
+MODEL_NAME = "gemini-2.5-flash"
 
 
 class handler(BaseHTTPRequestHandler):
@@ -42,7 +42,7 @@ class handler(BaseHTTPRequestHandler):
             self._send_json(400, {"error": "mood, genre, time 값이 모두 필요합니다."})
             return
 
-        # ---- 3) Claude API 호출 ----
+        # ---- 3) Gemini API 호출 ----
         try:
             books = self._get_recommendations(mood, genre, time)
         except Exception:
@@ -53,7 +53,7 @@ class handler(BaseHTTPRequestHandler):
         self._send_json(200, {"books": books})
 
     def _get_recommendations(self, mood, genre, time):
-        """Claude에게 책 3권 추천을 요청하고 파싱된 리스트를 반환한다."""
+        """Gemini에게 책 3권 추천을 요청하고 파싱된 리스트를 반환한다."""
         prompt = f"""당신은 친절한 AI 사서입니다.
 아래 조건에 맞는 책을 정확히 3권 추천해주세요.
 
@@ -68,14 +68,13 @@ class handler(BaseHTTPRequestHandler):
   ]
 }}"""
 
-        response = client.messages.create(
+        response = client.models.generate_content(
             model=MODEL_NAME,
-            max_tokens=1024,
-            messages=[{"role": "user", "content": prompt}],
+            contents=prompt,
         )
 
-        text = response.content[0].text
-        # Claude가 JSON 앞뒤에 다른 텍스트를 붙이는 경우를 대비해 {}로 감싸인 부분만 추출
+        text = response.text
+        # Gemini가 JSON 앞뒤에 다른 텍스트(코드블록 표시 등)를 붙이는 경우를 대비해 {}로 감싸인 부분만 추출
         start = text.index("{")
         end = text.rindex("}") + 1
         parsed = json.loads(text[start:end])
