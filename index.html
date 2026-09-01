@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <!-- viewport 설정: 모바일에서 화면 배율을 기기 너비에 맞춤 (반응형의 필수 조건) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오늘의 책, AI 사서</title>
+  <meta name="description" content="기분과 장르, 읽을 시간을 입력하면 AI 사서가 책 3권을 추천해줍니다." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ========================================
+       헤더 & 네비게이션 (모든 페이지 공통 구조)
+       각 페이지에서 이 마크업을 그대로 복사해서 사용하고,
+       현재 페이지 링크에만 aria-current="page"를 붙인다.
+  ======================================== -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="logo">오늘의 책, AI 사서</a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">&#9776;</button>
+      <ul class="nav-menu">
+        <li><a href="index.html" aria-current="page">홈</a></li>
+        <li><a href="recommend.html">AI 책 추천</a></li>
+        <li><a href="about.html">소개</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ========================================
+       히어로 영역: 서비스를 한 줄로 소개하고 핵심 기능(AI 추천)으로 유도
+  ======================================== -->
+  <main>
+    <section class="hero">
+      <h1>오늘 기분에 맞는 책, AI 사서가 골라드려요</h1>
+      <p>기분 · 좋아하는 장르 · 오늘 읽을 수 있는 시간만 알려주세요. 3초 만에 책 3권을 추천해드립니다.</p>
+      <a href="recommend.html" class="btn">AI 추천 받아보기</a>
+    </section>
+
+    <!-- 서비스 특징을 카드 3개로 소개 (요구사항: 최소 3개 섹션/페이지 중 하나) -->
+    <section class="container">
+      <div class="card-grid">
+        <div class="card">
+          <h3>기분 기반 추천</h3>
+          <p>오늘의 감정 상태에 맞는 책을 골라드려요. 우울할 땐 위로를, 기쁠 땐 함께 즐길 이야기를.</p>
+        </div>
+        <div class="card">
+          <h3>시간에 맞는 분량</h3>
+          <p>짧게 읽을 수 있는 날엔 가벼운 책을, 여유로운 날엔 긴 호흡의 책을 추천해요.</p>
+        </div>
+        <div class="card">
+          <h3>이유까지 설명</h3>
+          <p>단순히 제목만 나열하지 않고, 왜 이 책을 추천하는지 AI가 이유를 함께 알려줘요.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 오늘의 책, AI 사서. Codyssey 미션 프로젝트.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

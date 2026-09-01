@@ -1,0 +1,220 @@
+/* ========================================
+   공통 변수 (색상, 간격 등을 한 곳에서 관리)
+   - 색을 바꾸고 싶으면 여기 값만 수정하면 전체 사이트에 반영됨
+======================================== */
+:root {
+  --color-primary: #1f3a5f;   /* 헤더, 버튼 등 메인 색 (짙은 남색) */
+  --color-accent: #d98e4a;    /* 강조 색 (따뜻한 주황, 책 표지 느낌) */
+  --color-bg: #faf7f2;        /* 배경색 (아이보리) */
+  --color-text: #2b2b2b;      /* 기본 글자색 */
+  --color-muted: #6b6b6b;     /* 보조 설명 글자색 */
+  --color-border: #e3ddd2;
+  --radius: 10px;
+  --max-width: 1080px;
+}
+
+/* 브라우저마다 다른 기본 여백/폰트를 통일 (리셋) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ========================================
+   헤더 & 네비게이션
+   - 로고 + 메뉴를 가로로 배치 (flex)
+   - 모바일에서는 햄버거 버튼으로 메뉴를 여닫음 (js/main.js에서 처리)
+======================================== */
+.site-header {
+  background: var(--color-primary);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav-menu a {
+  font-weight: 500;
+  padding: 6px 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.nav-menu a:hover,
+.nav-menu a[aria-current="page"] {
+  border-color: var(--color-accent);
+}
+
+/* 모바일 메뉴 토글 버튼: 기본(데스크톱)에서는 숨김 */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* ========================================
+   공통 레이아웃 컨테이너
+======================================== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+section + section {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ========================================
+   히어로(메인 소개) 영역
+======================================== */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+}
+
+.hero p {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* 카드형 요소 (특징 소개 등에서 재사용) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.card h3 {
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+/* ========================================
+   푸터
+======================================== */
+.site-footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   반응형: 태블릿 이하 (768px 이하)
+======================================== */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================
+   반응형: 모바일 (600px 이하)
+   - 메뉴를 세로 드롭다운으로 바꾸고 토글 버튼을 보여줌
+======================================== */
+@media (max-width: 600px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-primary);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  /* js에서 이 클래스를 토글해서 모바일 메뉴를 보여줌 */
+  .nav-menu.is-open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 12px 20px;
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
