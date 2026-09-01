@@ -1,9 +1,8 @@
 {
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "css/**", "use": "@vercel/static" },
-    { "src": "js/**", "use": "@vercel/static" },
-    { "src": "images/**", "use": "@vercel/static" },
-    { "src": "api/recommend.py", "use": "@vercel/python" }
-  ]
+  "framework": null,
+  "functions": {
+    "api/recommend.py": {
+      "maxDuration": 30
+    }
+  }
 }
