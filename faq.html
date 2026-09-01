@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ - 오늘의 책, AI 사서</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* 이 페이지에서만 쓰는 아코디언(질문/답변 펼치기) 스타일 */
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+      padding: 16px 0;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .faq-item p {
+      margin-top: 10px;
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="logo">오늘의 책, AI 사서</a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">&#9776;</button>
+      <ul class="nav-menu">
+        <li><a href="index.html">홈</a></li>
+        <li><a href="recommend.html">AI 책 추천</a></li>
+        <li><a href="about.html">소개</a></li>
+        <li><a href="faq.html" aria-current="page">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 style="margin-bottom: 20px;">자주 묻는 질문</h1>
+
+    <!-- <details>/<summary>는 JS 없이도 펼치고 접을 수 있는 표준 HTML 요소 -->
+    <details class="faq-item" open>
+      <summary>추천 결과는 어떻게 만들어지나요?</summary>
+      <p>입력하신 기분, 장르, 읽을 수 있는 시간을 Anthropic의 Claude AI에게 전달해서, 그 조건에 맞는 책 3권과 추천 이유를 생성합니다.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>입력한 정보가 저장되나요?</summary>
+      <p>아니요. 입력하신 내용은 추천 결과를 생성하는 데만 사용되고 별도로 저장하지 않습니다.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>추천이 안 나오거나 오류가 뜨면 어떻게 하나요?</summary>
+      <p>필수 입력값이 비어 있으면 안내 메시지가 표시됩니다. AI 서버 오류나 응답 지연이 발생한 경우에도 화면에 안내 문구가 표시되니, 잠시 후 다시 시도해주세요.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>추천 책이 실제로 존재하는 책인가요?</summary>
+      <p>AI가 실제 도서를 기반으로 추천하도록 안내하고 있지만, 완벽하지 않을 수 있어 구매/대출 전에는 제목을 다시 한번 검색해 확인하시길 권장합니다.</p>
+    </details>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 오늘의 책, AI 사서. Codyssey 미션 프로젝트.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
