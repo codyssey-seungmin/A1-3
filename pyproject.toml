@@ -1,0 +1,4 @@
+# Vercel이 api/recommend.py 안의 handler를 서버리스 함수 진입점으로 인식하도록 명시한다.
+# (빌드 로그에서 "No python entrypoint found"라고 안내한 설정을 그대로 추가한 것)
+[tool.vercel]
+entrypoint = "api.recommend:handler"
