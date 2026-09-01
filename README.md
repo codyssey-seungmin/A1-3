@@ -2,7 +2,7 @@
 
 기분 · 좋아하는 장르 · 오늘 읽을 수 있는 시간을 입력하면, Anthropic Claude AI가 조건에 맞는 책 3권과 추천 이유를 알려주는 웹 서비스입니다.
 
-- **배포 URL**: _(Vercel 배포 후 이 자리에 채워 넣습니다)_
+- **배포 URL**: https://a1-3-j78t.vercel.app
 - **GitHub**: https://github.com/codyssey-seungmin/A1-3
 
 ## 주요 기능
