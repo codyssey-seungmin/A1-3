@@ -12,3 +12,6 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# 개인 참고용 문서 (제출 대상 아님)
+study-guide.md
