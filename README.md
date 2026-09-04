@@ -63,3 +63,15 @@ AI 추천 기능(`/api/recommend`)은 Vercel 서버리스 함수이므로 아래
 - 로컬 개발 시: `.env.example`을 복사해 `.env` 파일을 만들고, `ANTHROPIC_API_KEY` 값을 채워 넣는다. (`.env`는 `.gitignore`에 등록되어 있어 커밋되지 않는다)
 - Vercel 배포 시: 프로젝트 Settings → Environment Variables 에서 동일한 키를 등록한다.
 - API 키는 절대 코드나 README, 스크린샷에 노출하지 않는다.
+
+## 배포 문제 발생 시 확인 절차
+1. Vercel 프로젝트 → **Deployments** 탭에서 최신 배포 상태(Ready / Error) 확인
+2. 배포 자체가 실패했다면 해당 배포의 **Build Logs**에서 원인 확인
+3. 배포는 성공했는데 기능이 안 되면 **Logs**(Runtime Logs) 탭에서 `/api/recommend` 요청의 에러 메시지 확인
+4. 원인을 코드나 설정(`vercel.json`, 환경 변수 등)에서 수정
+5. `git add` → `git commit` → `git push` → Vercel이 자동으로 재배포 → 다시 동작 확인
+
+## API 키 유출 시 대응
+1. 교육장(Codyssey) 발급 페이지에서 해당 키를 즉시 폐기하고 새 virtual key를 재발급한다.
+2. Vercel Environment Variables의 `ANTHROPIC_API_KEY` 값을 새 키로 교체하고 재배포한다.
+3. 만약 키가 커밋 이력에 남아 있다면(예: 실수로 코드에 포함된 경우), 해당 커밋을 정리하거나 저장소를 새로 정리한다.
